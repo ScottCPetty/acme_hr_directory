@@ -38,7 +38,10 @@ app.post("/api/employees", async (req, res, next) => {
         VALUES ($1, $2)
         RETURNING *
     `;
-    const response = await client.query(SQL, [req.body.name, req.body.department_id]);
+    const response = await client.query(SQL, [
+      req.body.name,
+      req.body.department_id,
+    ]);
     res.send(response.rows[0]);
   } catch (error) {
     console.log(error);
@@ -63,7 +66,11 @@ app.put("/api/employees/:id", async (req, res, next) => {
         SET name=$1, updated_at=now(), category_id=$2
         WHERE id=$3 RETURNING *
     `;
-    const response = await client.query(SQL, [req.body.name, req.body.department_id, req.params.id]);
+    const response = await client.query(SQL, [
+      req.body.name,
+      req.body.department_id,
+      req.params,
+    ]);
     res.send(response.rows[0]);
   } catch (error) {
     console.log(error);
