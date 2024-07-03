@@ -9,6 +9,12 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(require("morgan")("dev"));
 
+app.get("/api/employees", async (req, res, next) => {});
+app.get("/api/departments", async (req, res, next) => {});
+app.post("/api/employees", async (req, res, next) => {});
+app.delete("/api/employees/:id", async (req, res, next) => {});
+app.put("/api/employees/:id", async (req, res, next) => {});
+
 async function init() {
   await client.connect();
   const SQL = `
