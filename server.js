@@ -9,11 +9,51 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(require("morgan")("dev"));
 
-app.get("/api/employees", async (req, res, next) => {});
-app.get("/api/departments", async (req, res, next) => {});
-app.post("/api/employees", async (req, res, next) => {});
-app.delete("/api/employees/:id", async (req, res, next) => {});
-app.put("/api/employees/:id", async (req, res, next) => {});
+app.get("/api/employees", async (req, res, next) => {
+  try {
+    const SQl = ``;
+    const response = await client.query(SQL);
+    res.send(response.rows);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.get("/api/departments", async (req, res, next) => {
+  try {
+    const SQl = ``;
+    const response = await client.query(SQL);
+    res.send(response.rows);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.post("/api/employees", async (req, res, next) => {
+  try {
+    const SQl = ``;
+    const response = await client.query(SQL);
+    res.send(response.rows[0]);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.delete("/api/employees/:id", async (req, res, next) => {
+  try {
+    const SQl = ``;
+    const response = await client.query(SQL);
+    res.sendStatus(204);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.put("/api/employees/:id", async (req, res, next) => {
+  try {
+    const SQl = ``;
+    const response = await client.query(SQL);
+    res.send(response.rows[0]);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 async function init() {
   await client.connect();
