@@ -6,6 +6,9 @@ const client = new pg.Client(
 );
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
+app.use(require("morgan")("dev"));
+
 async function init() {
   await client.connect();
   const SQL = `
@@ -25,7 +28,14 @@ async function init() {
   `;
   await client.query(SQL);
   console.log("tables created");
-  SQL = ``;
+  SQL = `
+    INSERT INTO departments(name) VALUES(management);
+    INSERT INTO departments(name) VALUES(reception);
+    INSERT INTO departments(name) VALUES(sales);
+    INSERT INTO employees(name, department_id) VALUES('Phillis Vance', SELECT id FROM departments WHERE name='sales');
+    INSERT INTO employees(name, department_id) VALUES('Erin Hannon', SELECT id FROM departments WHERE name='reception');
+    INSERT INTO employees(name, department_id) VALUES('Dwight Schrute', SELECT id FROM departments WHERE name='management');
+  `;
   await client.query(SQL);
   console.log("tables seeded");
   app.listen(port, () => console.log(`listening on port ${port}`));
