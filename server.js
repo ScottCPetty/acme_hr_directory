@@ -76,6 +76,9 @@ app.put("/api/employees/:id", async (req, res, next) => {
     console.log(error);
   }
 });
+app.use((error, req, res, next) => {
+  res.status(res.status || 500).send({ error: error });
+});
 
 async function init() {
   await client.connect();
