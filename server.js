@@ -11,7 +11,9 @@ app.use(require("morgan")("dev"));
 
 app.get("/api/employees", async (req, res, next) => {
   try {
-    const SQl = ``;
+    const SQl = `
+        SELECT * from employees
+    `;
     const response = await client.query(SQL);
     res.send(response.rows);
   } catch (error) {
@@ -20,7 +22,9 @@ app.get("/api/employees", async (req, res, next) => {
 });
 app.get("/api/departments", async (req, res, next) => {
   try {
-    const SQl = ``;
+    const SQl = `
+        SELECT * from departments
+    `;
     const response = await client.query(SQL);
     res.send(response.rows);
   } catch (error) {
