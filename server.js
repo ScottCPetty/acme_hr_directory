@@ -11,7 +11,7 @@ app.use(require("morgan")("dev"));
 
 app.get("/api/employees", async (req, res, next) => {
   try {
-    const SQl = `
+    const SQL = `
         SELECT * from employees
     `;
     const response = await client.query(SQL);
@@ -22,7 +22,7 @@ app.get("/api/employees", async (req, res, next) => {
 });
 app.get("/api/departments", async (req, res, next) => {
   try {
-    const SQl = `
+    const SQL = `
         SELECT * from departments
     `;
     const response = await client.query(SQL);
@@ -33,7 +33,7 @@ app.get("/api/departments", async (req, res, next) => {
 });
 app.post("/api/employees", async (req, res, next) => {
   try {
-    const SQl = ``;
+    const SQL = ``;
     const response = await client.query(SQL);
     res.send(response.rows[0]);
   } catch (error) {
@@ -42,7 +42,7 @@ app.post("/api/employees", async (req, res, next) => {
 });
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
-    const SQl = ``;
+    const SQL = ``;
     const response = await client.query(SQL);
     res.sendStatus(204);
   } catch (error) {
@@ -51,7 +51,7 @@ app.delete("/api/employees/:id", async (req, res, next) => {
 });
 app.put("/api/employees/:id", async (req, res, next) => {
   try {
-    const SQl = ``;
+    const SQL = ``;
     const response = await client.query(SQL);
     res.send(response.rows[0]);
   } catch (error) {
