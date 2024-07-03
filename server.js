@@ -46,8 +46,11 @@ app.post("/api/employees", async (req, res, next) => {
 });
 app.delete("/api/employees/:id", async (req, res, next) => {
   try {
-    const SQL = ``;
-    const response = await client.query(SQL);
+    const SQL = `
+        DELETE from employees
+        WHERE id=$1
+    `;
+    const response = await client.query(SQL, [req.params.id]);
     res.sendStatus(204);
   } catch (error) {
     console.log(error);
@@ -55,8 +58,12 @@ app.delete("/api/employees/:id", async (req, res, next) => {
 });
 app.put("/api/employees/:id", async (req, res, next) => {
   try {
-    const SQL = ``;
-    const response = await client.query(SQL);
+    const SQL = `
+        UPDATE employees
+        SET name=$1, updated_at=now(), category_id=$2
+        WHERE id=$3 RETURNING *
+    `;
+    const response = await client.query(SQL, [req.body.name, req.body.department_id, req.params.id]);
     res.send(response.rows[0]);
   } catch (error) {
     console.log(error);
